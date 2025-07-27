@@ -1,4 +1,5 @@
-FROM ubuntu:20.04
+FROM ubuntu:24.04
+# FROM ubuntu:20.04
 ENV DEBIAN_FRONTEND=noninteractive
 
 # update and install necessary packages
@@ -14,7 +15,10 @@ RUN apt-get update -y && apt-get upgrade -y && \
         wget \
         gcc-multilib \
         dh-make-perl \
-        apt-file && \
+        apt-file \
+        python3 \
+        python3-pip \
+        python3-venv && \
     rm -rf /var/lib/apt/lists/*
 
 WORKDIR /build

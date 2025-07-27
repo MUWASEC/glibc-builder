@@ -80,7 +80,7 @@ glibc_x64(){
     pushd /opt/glibc/source/glibc-${source_ver}
     mkdir build
     cd build
-    ../configure --prefix=/opt/glibc/x64/${source_ver}/ --disable-werror --enable-debug=yes
+    ../configure --prefix=/opt/glibc/x64/${source_ver}/ --disable-werror --enable-debug=yes CFLAGS="-g -O2 -fno-omit-frame-pointer" CXXFLAGS="-g -O2 -fno-omit-frame-pointer"
     make -j $thread_cpu
     make install -j $thread_cpu
     cat <<EOF >> /opt/glibc/x64/${source_ver}/etc/ld.so.conf
@@ -106,7 +106,7 @@ glibc_x86(){
     
     pushd /opt/glibc/source/glibc-${source_ver}
     mkdir build && cd build
-    ../configure --prefix=/opt/glibc/x86/${source_ver}/ --disable-werror --enable-debug=yes --host=i686-linux-gnu --build=i686-linux-gnu CC="gcc -m32" CXX="g++ -m32" 
+    ../configure --prefix=/opt/glibc/x86/${source_ver}/ --disable-werror --enable-debug=yes CFLAGS="-g -O2 -fno-omit-frame-pointer" CXXFLAGS="-g -O2 -fno-omit-frame-pointer" --host=i686-linux-gnu --build=i686-linux-gnu CC="gcc -m32" CXX="g++ -m32" 
     make -j $thread_cpu
     make install -j $thread_cpu
     cat <<EOF >> /opt/glibc/x86/${source_ver}/etc/ld.so.conf
@@ -132,7 +132,7 @@ glibc_no-tcache_x64(){
     pushd /opt/glibc/source/glibc-${source_ver}
     mkdir build
     cd build
-    ../configure --prefix=/opt/glibc/no-tcache/x64/${source_ver}/ --disable-werror --enable-debug=yes --disable-experimental-malloc
+    ../configure --prefix=/opt/glibc/no-tcache/x64/${source_ver}/ --disable-werror --enable-debug=yes CFLAGS="-g -O2 -fno-omit-frame-pointer" CXXFLAGS="-g -O2 -fno-omit-frame-pointer" --disable-experimental-malloc
     make -j $thread_cpu
     make install -j $thread_cpu
     cat <<EOF >> /opt/glibc/no-tcache/x64/${source_ver}/etc/ld.so.conf
@@ -158,7 +158,7 @@ glibc_no-tcache_x86(){
     pushd /opt/glibc/source/glibc-${source_ver}
     mkdir build
     cd build
-    ../configure --prefix=/opt/glibc/no-tcache/x86/${source_ver}/ --disable-werror --enable-debug=yes --host=i686-linux-gnu --build=i686-linux-gnu CC="gcc -m32" CXX="g++ -m32" --disable-experimental-malloc
+    ../configure --prefix=/opt/glibc/no-tcache/x86/${source_ver}/ --disable-werror --enable-debug=yes CFLAGS="-g -O2 -fno-omit-frame-pointer" CXXFLAGS="-g -O2 -fno-omit-frame-pointer" --host=i686-linux-gnu --build=i686-linux-gnu CC="gcc -m32" CXX="g++ -m32" --disable-experimental-malloc
     make -j $thread_cpu
     make install -j $thread_cpu
     cat <<EOF >> /opt/glibc/no-tcache/x86/${source_ver}/etc/ld.so.conf
